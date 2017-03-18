@@ -1,7 +1,7 @@
 # WEChatRobot
-<h3>基于<a href="http://itchat.readthedocs.io/zh/latest/">itchat</a>和<a href="http://www.tuling123.com/">图灵机器人</a>的微信机器人自动回复功能</h3>
-目前已实现功能：<br/>
-   <ul>
-     <li> 好友自动回复 </li>
-     <li> 通过消息打开或关闭机器人</li>
-   </ul>
+基于[ichat](http://itchat.readthedocs.io/zh/latest/)和[图灵机器人](http://www.tuling123.com/)的微信机器人自动回复功能
+
+## 目前已实现功能：
+* 好友自动回复
+* 好友可自行设置机器人开关
+* 多次登录不用输入二维码

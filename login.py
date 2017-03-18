@@ -14,13 +14,13 @@ def text_reply(msg):
 
     res = myrobot.switch(msg['Content'], userid)
     if res:
-        # itchat.send(res,msg['FromUserName'])
-        itchat.send(res,toUserName='filehelper')
+        itchat.send(res,msg['FromUserName'])
+        # itchat.send(res,toUserName='filehelper')
     else:
         if myrobot.getRobotStatus(userid):
             req = myrobot.tuling_auto_replay(msg['FromUserName'],msg['Text'])
-            # itchat.send(req,msg['FromUserName'])
-            itchat.send(req,toUserName='filehelper')
+            itchat.send(req,msg['FromUserName'])
+            # itchat.send(req,toUserName='filehelper')
 
 def main():
     itchat.auto_login(enableCmdQR=2, hotReload=True)

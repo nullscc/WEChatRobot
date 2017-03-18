@@ -3,42 +3,32 @@ import itchat
 import sys
 from itchat.content import *
 import robot
+import time
 
 myrobot = robot.tulingrobot()
 
 @itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])
 def text_reply(msg):
-    print "[+]   From " + msg['FromUserName']+ " : " +msg['Text']
+    # print "[+]   From " + msg['FromUserName']+ "to" + msg['ToUserName'] +" : " +msg['Text']
+    userid = msg['FromUserName']
 
-    if (msg['FromUserName'] == msg['ToUserName']):
-        req = myrobot.switch(msg['Content'])
-        itchat.send(req,msg['FromUserName'])
+    res = myrobot.switch(msg['Content'], userid)
+    if res:
+        # itchat.send(res,msg['FromUserName'])
+        itchat.send(res,toUserName='filehelper')
     else:
-        if(myrobot.getRobotStatus()):
+        if myrobot.getRobotStatus(userid):
             req = myrobot.tuling_auto_replay(msg['FromUserName'],msg['Text'])
-            itchat.send(req,msg['FromUserName'])
-            print "[-]   [Robot] : " + req
-        #else :
-        #    itchat.send(u"收到啦~",msg['FromUserName'])
+            # itchat.send(req,msg['FromUserName'])
+            itchat.send(req,toUserName='filehelper')
 
-def main(mod=False):
-    itchat.auto_login(enableCmdQR=mod)
+def main():
+    itchat.auto_login(enableCmdQR=2, hotReload=True)
     itchat.run()
 
 #itchat.auto_login(enableCmdQR=True )
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        main()
-    else:
-        if sys.argv[1].startswith('-'):
-            option = sys.argv[1]
-            if option == '-cmdQR':
-                main(True)
-            else:
-                print '''
-           \n[+]  Use: 'python login.py cmdQR' to enable cmd QRcode.
-           \n[+]  Use: 'python login.py ' and Scan QRcode to login
-           '''
+    main()
 
 
 
